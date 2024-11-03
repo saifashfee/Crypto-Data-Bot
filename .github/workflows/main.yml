@@ -27,7 +27,7 @@ jobs:
         run: python fetch_data.py
       
       - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: crypto_data_csv
           path: crypto_data_*.csv          #This will upload all csv files matching the pattern
