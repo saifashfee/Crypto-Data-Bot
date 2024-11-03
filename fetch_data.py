@@ -12,8 +12,13 @@ def fetch_data():
     }
 
     response = requests.get(url, headers=headers)
-    data = response.json().get('result', [])
-    return data
+    if response.status_code == 200:
+        print("Data fetched successfully.")
+        data = response.json().get('result', [])
+        return data
+    else:
+        print(f"Failed to fetch data: {response.status_code} - {response.text}")
+        return []
 
 def save_to_csv(data):
     # Convert the data into a DataFrame
