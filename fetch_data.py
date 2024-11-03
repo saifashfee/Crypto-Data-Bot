@@ -33,11 +33,14 @@ def save_to_csv(data):
                       '24h High ($)', '24h Low ($)', 'Price Change Percentage', 
                       'Market Cap ($)', 'Circulating Supply']
 
-        # Save to CSV with a timestamp
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        csv_filename = f"crypto_data_{timestamp}.csv"
-        df.to_csv(csv_filename, index=False)
+        csv_filename = "crypto_data.csv"
+
+        if os.path.exists(csv_filename):
+            df.to_csv(csv_filename, mode='a', header=False, index=False
+        else:
+            df.to_csv(csv_filename, index=False)
         print(f"Data saved to {csv_filename}")
+        
     else:
         print("No data available to save.")
 
