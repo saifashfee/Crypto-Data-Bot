@@ -1,0 +1,33 @@
+name: Fetch Cryptocurrency Data
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # This will run the workflow every 5 minutes
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Use the latest Python version
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas matplotlib seaborn
+      
+      - name: Run fetch_data.py
+        env:
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}  # Pass the secret API key as an environment variable
+        run: python fetch_data.py
+      
+      - name: Upload CSV as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: crypto_data_csv
+          path: crypto_data_*.csv          #This will upload all csv files matching the pattern
