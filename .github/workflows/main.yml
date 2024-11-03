@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pandas matplotlib seaborn
+          pip install requests pandas
       
       - name: Run fetch_data.py
         env:
@@ -27,7 +27,7 @@ jobs:
         run: python fetch_data.py
       
       - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: crypto_data_csv
           path: crypto_data_*.csv          #This will upload all csv files matching the pattern
