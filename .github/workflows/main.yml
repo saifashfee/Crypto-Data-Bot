@@ -25,6 +25,9 @@ jobs:
         env:
           RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}  # Pass the secret API key as an environment variable
         run: python fetch_data.py
+  
+      - name: List files
+        run: ls -al  # This will list all files to check if the CSV is created
       
       - name: Upload CSV as artifact
         uses: actions/upload-artifact@v4
