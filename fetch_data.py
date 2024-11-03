@@ -36,11 +36,11 @@ def save_to_csv(data):
         csv_filename = "crypto_data.csv"
 
         if os.path.exists(csv_filename):
-            df.to_csv(csv_filename, mode='a', header=False, index=False
+            df.to_csv(csv_filename, mode='a', header=False, index=False)
         else:
             df.to_csv(csv_filename, index=False)
-        print(f"Data saved to {csv_filename}")
         
+        print(f"Data saved to {csv_filename}")
     else:
         print("No data available to save.")
 
